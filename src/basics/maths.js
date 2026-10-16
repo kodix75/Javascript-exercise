@@ -3,7 +3,17 @@
  * @return {number} sphere volume
  */
 export function computeSphereVolume(diameter) {
-  // Write your code here
+  if (typeof diameter === "string" || Number.isNaN(diameter) || diameter < 0) {
+    alert("error");
+  } else if (diameter === 0) {
+    return 0;
+  } else if (diameter === 1) {
+    return Number((4 / 3) * Math.PI * (diameter / 2) ** 3);
+  } else if (diameter) {
+    return Number((4 / 3) * Math.PI * (diameter / 2) ** 3);
+  } else {
+    return;
+  }
 }
 
 /**
@@ -11,7 +21,15 @@ export function computeSphereVolume(diameter) {
  * @return {number} number rounded to one decimal
  */
 export function roundNumberToOneDecimals(n) {
-  // Write your code here
+  if (typeof n === "string") {
+    alert("error");
+  } else if (Number.isNaN(n)) {
+    alert("error");
+  } else if (decimalPlaces(n)) {
+
+  } else {
+    reque
+  }
 }
 
 /**

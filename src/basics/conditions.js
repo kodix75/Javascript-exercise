@@ -13,7 +13,17 @@
  * @return {boolean} true if n is bigger than 2
  */
 export function isBiggerThan2(n) {
-  // Write your code here
+  if (n > 2) {
+    return true;
+  } else if (Number.isNaN(n)) {
+    alert("error");
+  } else if (n < 2 || n === 2) {
+    return false;
+  } else if (typeof n === "string") {
+    alert("error please provide number only");
+  } else {
+    return
+  }
 }
 
 /**
@@ -22,5 +32,13 @@ export function isBiggerThan2(n) {
  * @return {boolean} true if n is a multiple of m
  */
 export function isMult(n, m) {
-  // Write your code here
+  if (n % m === 0) {
+    return true;
+  } else if (typeof n === "string" || Number.isNaN(n) || typeof m !== "number" || Number.isNaN(m)) {
+    alert("error please provide a number value only");
+  } else if (n % m !== 0) {
+    return false;
+  } else {
+    return;
+  }
 }

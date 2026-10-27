@@ -25,10 +25,12 @@ export function roundNumberToOneDecimals(n) {
     alert("error");
   } else if (Number.isNaN(n)) {
     alert("error");
-  } else if (decimalPlaces(n)) {
-
+  } else if (Number.isInteger(n)) {
+    return n;
+  } else if (!Number.isInteger(n)) {
+    return Math.round(n * 10) / 10
   } else {
-    reque
+    return
   }
 }
 

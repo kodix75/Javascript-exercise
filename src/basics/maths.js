@@ -1,3 +1,6 @@
+import { error } from "node:console";
+import { type } from "node:os";
+
 /**
  * @param {number} diameter
  * @return {number} sphere volume
@@ -39,7 +42,18 @@ export function roundNumberToOneDecimals(n) {
  * @return {number} average with full precision
  */
 export function computeAverage(grades) {
-  // Write your code here
+
+  if (!Array.isArray(grades)) {
+    throw new error("error");
+  }
+  if (!grades.every(g => typeof g === 'number' && !Number.isNaN(g))) {
+    throw new error("error");
+  }
+  if (grades.length === 1) {
+    return grades[0];
+  }
+  const sum = Number(grades.reduce((a, b) => a + b, 0));
+  return sum / grades.length;
 }
 
 /**
@@ -47,5 +61,16 @@ export function computeAverage(grades) {
  * @return {number} rounded average to 1 decimal
  */
 export function roundedAverage(grades) {
-  // Write your code here
+  if (!Array.isArray(grades)) {
+    throw new error("error");
+  }
+  if (!grades.every(g => typeof g === 'number' && !Number.isNaN(g))) {
+    throw new error("error");
+  }
+  if (grades.length === 1) {
+    return grades[0];
+  }
+  const sum = Number(grades.reduce((a, b) => a + b, 0));
+  const rawAverage = sum / grades.length;
+  return Number(rawAverage.toFixed(1));
 }

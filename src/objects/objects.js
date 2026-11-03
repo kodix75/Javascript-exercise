@@ -46,7 +46,18 @@ export function iteratesThroughObjectValuesAndProperties(object) {
  * @return {{younger: string, older: string}}
  */
 export function retrieveMaximumMinimumUserAges(users) {
-  // Write your code here
+  if (users.length === 0) return { younger: "", older: "" };
+
+  const maxAge = Math.max(...users.map(u => u.age));   
+  const minAge = Math.min(...users.map(u => u.age));   
+
+  const oldestUser   = users.findLast(u => u.age === maxAge);
+  const youngestUser = users.find(u => u.age === minAge);
+
+  return {
+    younger: youngestUser.name,
+    older:   oldestUser.name
+  };
 }
 
 /**
@@ -56,7 +67,7 @@ export function retrieveMaximumMinimumUserAges(users) {
  * @return {Object} An object retrieved by parsing the string
  */
 export function parseJavaScriptObjectNotation(string) {
-  // Write your code here
+  
 }
 
 /**

@@ -1,15 +1,20 @@
 /**
  * Calculate the factorial of a number using recursion
  * Factorial of n (n!) is the product of all positive integers less than or equal to n
- * For example: 5! = 5 × 4 × 3 × 2 × 1 = 120
+ *
  * @param {number} n - A non-negative integer
  * @return {number} The factorial of n
  */
 export function factorial(n) {
-  // Write your code here
+  if (typeof n === 'string' || isNaN(n) || n < 0 || !Number.isInteger(n)) {
+    throw new Error('error');
+  }
+  if (n < 1) return 1;
+  return n * factorial(n - 1);
 }
 
-/**
+
+ /**
  * Calculate the nth Fibonacci number using recursion
  * Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
  * Each number is the sum of the two preceding numbers
@@ -17,5 +22,9 @@ export function factorial(n) {
  * @return {number} The nth Fibonacci number
  */
 export function fibonacci(n) {
-  // Write your code here
+  if(typeof n === 'string' || isNaN(n) || n < 0 || !Number.isInteger(n)) {
+    throw new Error('error');
+  }
+  if (n < 2) return n;
+return fibonacci(n - 1) + fibonacci(n - 2);
 }

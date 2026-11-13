@@ -1,10 +1,14 @@
+
 /**
  * Register a new event listener that will retrieve the position of the mouse on the page
  * and display the coordinates in the element with id "mouse-coordinates".
  * You need to display coordinates as follows : "x: 232, y: 332"
  */
 export function mouseMovements() {
-  // Write your code here
+  const mouseInfo = document.getElementById('mouse-coordinates');
+  document.addEventListener('mousemove', (event) => {
+    mouseInfo.innerHTML = `<span>x: ${event.clientX},</span> <span>y: ${event.clientY}</span>`;
+  })
 }
 
 const randomRGB = () => {
@@ -13,7 +17,9 @@ const randomRGB = () => {
   const s = 255
   return `rgba(${o(r() * s)},${o(r() * s)},${o(r() * s)})`
 }
-let enteringColor = ''
+const focusMe = document.getElementById('focus-me');
+let enteringColor = focusMe.style.borderColor;
+let enteringColorText = focusMe.style.color;
 
 /**
  * On the page, you have an input with the id "focus-me".
@@ -25,8 +31,35 @@ let enteringColor = ''
  * 3. When the input loses focus, reset the border color to the one it had before focus.
  */
 export function hoverFocusAndBlur() {
-  // Write your code here
-}
+  const focusMe = document.getElementById('focus-me');
+  focusMe.addEventListener('focus', () => {
+    focusMe.style.borderColor = randomRGB();
+  });
+  focusMe.addEventListener('blur', () => {
+    focusMe.placeholder = '';
+    focusMe.style.borderColor = enteringColor;
+  });
+  const labelsArray = document.querySelectorAll('label[for="focus-me"]');
+  const oldinfo = Array.from(labelsArray).map(x => x.textContent) //  array of strings, 
+  const labels = [...labelsArray]; // html elements, 
+  const labelsOld = [];
+  focusMe.addEventListener('mouseenter', () => {
+    labels.forEach((label) => {
+      label.textContent = 'Yes, you hover me !';
+    });
+  });
+
+
+  focusMe.addEventListener('mouseout', () => {
+    labels.forEach((label, index) => {
+      label.textContent = oldinfo[index];
+    })
+  })
+};
+
+
+
+
 
 /**
  * On the same input from the previous exercise, you need to add a new behavior :
@@ -36,5 +69,15 @@ export function hoverFocusAndBlur() {
  * Also apply this new color to the text of the input's labels.
  */
 export function changesOnInputEvents() {
-  // Write your code here
-}
+  const focusMe = document.getElementById('focus-me');
+  focusMe.addEventListener('input', () => {
+    focusMe.style.borderColor = randomRGB();
+  });
+  focusMe.addEventListener('input', () => {
+    focusMe.style.color = randomRGB();
+  })
+  if (focusMe.addEventListener('blur', () => {
+    focusMe.style.color = enteringColorText;
+  }));
+};
+
